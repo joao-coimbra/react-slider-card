@@ -125,7 +125,7 @@ const Roll = styled.div`
     gap: ${props => props.gap || 0}px;
     width: 100%;
 
-    transition: all ${props => props.speed || 300}ms ease-in-out;
+    transition: transform ${props => props.speed || 300}ms ease-in-out;
 
     transform: translateX(calc(${props => `((100% + ${props.gap}px) / ${props.v}) * ${props.p}`}));
 

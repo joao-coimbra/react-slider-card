@@ -7,7 +7,64 @@
 }
 
 .App .content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     width: 60vw;
+}
+
+.App .content > h1{
+    display: flex;
+    margin: 0;
+}
+
+.App .content > div.top {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: ; */
+    gap: 30px;
+}
+
+.App .content > div.top > * {
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+}
+
+.App .content > div.top > div {
+    height: fit-content;
+    background-color: #f2f4f6;
+
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+@media screen and (max-width: 720px) {
+
+    .App .content > div.top > * {
+        flex: 1;
+    }
+
+    .App .content > div.top > pre {
+        display: none !important;
+    }
+}
+
+
+
+.App .content label {
+    display: flex;
+    gap: 10px;
+}
+
+.App .content input#scroll {
+    width: fit-content;
+}
+
+.App .content label input {
+    width: 100%;
 }
 
 .App .content .slider-card .roll > div {
