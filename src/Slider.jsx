@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
-function Slider({ children, gap, visibleCards, speed }) {
+function Slider({ children, gap, visibleCards, scroll, speed }) {
 
     const [position, setPosition] = useState(0);
     const [disabledPrevious, setDisabledPrevious] = useState(visibleCards >= children.length);
@@ -39,7 +39,7 @@ function Slider({ children, gap, visibleCards, speed }) {
     }
 
     return (
-        <Content className='slider-card'>
+        <Content className='slider-card' scroll={scroll}>
 
             <button
                 onClick={nextPosition}
@@ -53,6 +53,8 @@ function Slider({ children, gap, visibleCards, speed }) {
                     p={position}
 
                     speed={speed}
+
+                    scroll={scroll}
                 >
                     {children}
                 </Roll>
@@ -103,6 +105,8 @@ const Content = styled.div`
         &:hover {
             background-color: #00000010;
         }
+
+        ${props => props.scroll && 'display: none;'}
     }
 
     > div {
@@ -125,9 +129,21 @@ const Roll = styled.div`
 
     transform: translateX(calc(${props => `((100% + ${props.gap}px) / ${props.v}) * ${props.p}`}));
 
-    > div {
+    > * {
         min-width: calc(${props => `(100% - (${props.gap || 0}px * (${props.v} - 1)))/${props.v}`});
         max-width: calc(${props => `(100% - (${props.gap || 0}px * (${props.v} - 1)))/${props.v}`});
+    }
+
+    ${props => props.scroll && 
+        `
+        flex: none;
+        overflow: auto;
+        scroll-snap-type: x mandatory;
+
+        > * {
+            scroll-snap-align: start;
+        }
+        `
     }
 `
 

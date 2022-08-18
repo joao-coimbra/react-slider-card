@@ -9,10 +9,11 @@ function App() {
         <div className="App">
 
             <div className="content">
-
+            
                 <Slider
                     gap={10}
                     visibleCards={10}
+                    scroll
                 >
                     {Array(15).fill(null).map((a, index) => <div key={index}>{a}</div>)}
                 </Slider>
